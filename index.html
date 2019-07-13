@@ -1,0 +1,1447 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width"/>
+    <meta name="format-detection" content="telephone=no">
+    <title>DEX 2.0.181121</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style> 
+        body {
+            background-color: #2a2a2a !important;
+        }
+        .centerDiv {
+            width:140px; border-radius: 5px; color:lightgrey;
+            padding:10px; height:50px; position:absolute;
+            margin-top:-25px; margin-left:-70px; top:50%; left:50%;
+            font-family: "Play", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif !important;
+            font-weight: 100;
+            font-size: 44px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
+    <style>
+    @font-face {
+  
+  font-family: 'Play' !important; 
+  
+  font-style: normal !important; 
+  
+  font-weight: 700 !important; 
+  src: local('Play'), local('Play'), url(https://fonts.gstatic.com/s/play/v9/6ae84K2oVqwItm4TCpAy2lvQNTI.woff2) format('woff2') !important; 
+  }
+
+    b.value {
+    font-family: Play  !important; 
+    }
+
+    button.button {
+    background-color: #5500bb  !important; 
+    border-color: #00a2ff  !important; 
+    border-style: solid  !important; 
+    color: #ffffff !important; 
+}
+
+button.button span {
+    font-weight: bold  !important; 
+    text-transform: uppercase  !important; 
+}
+
+button.button.outline {
+    margin-top: 2 px  !important; 
+    background-color: #5500bb  !important; 
+    color: #fff  !important; 
+}
+
+div div a {
+    font-family: Play  !important; 
+}
+
+div div p {
+    font-family: Play  !important; 
+}
+
+div div span {
+    font-family: Play  !important; 
+}
+
+div p span {
+    font-family: Play  !important; 
+    font-variant: small-caps  !important; 
+    font-weight: bold  !important; 
+    letter-spacing: 1px  !important; 
+    text-transform: lowercase  !important; 
+}
+
+div.block-content-header span {
+    font-variant: small-caps  !important; 
+    font-weight: bold  !important; 
+    text-transform: lowercase  !important; 
+    letter-spacing: 1px  !important; 
+}
+
+div.button {
+    border-width: 1px  !important; 
+}
+
+div.button.small {
+    background-color: #5500bb  !important; 
+    color: #fff  !important; 
+    font-weight: bold  !important; 
+    margin-top: 5px  !important; 
+}
+
+div.card {
+    background-color: #5500bb  !important; 
+    color: #fff  !important; 
+    font-weight: bold  !important; 
+}
+
+div.card-divider {
+    background-color: #5500bb  !important; 
+    border-color: #5500bb  !important; 
+    border-style: solid  !important; 
+    color: #fff  !important; 
+    font-weight: bold  !important; 
+    text-transform: lowercase  !important; 
+    border-top-width: 1px  !important; 
+    border-bottom-width: 1px  !important; 
+    line-height: 0  !important; 
+    font-variant: small-caps  !important; 
+}
+
+div.cell {
+    font-size: 75%  !important; 
+    background-color: #140038  !important; 
+    border-style: dotted  !important; 
+    border-width: 1px  !important; 
+    border-color: #0cf  !important; 
+}
+
+div.cell.header-cell {
+    background-color: #5500bb  !important; 
+    color: #fff  !important; 
+    font-weight: bold  !important; 
+    letter-spacing: 1px  !important; 
+}
+
+div.clickable {
+    color: #fff  !important; 
+}
+
+div.content-block div span {
+    font-family: Play  !important; 
+}
+
+div.content-block.transfer-input textarea {
+    background-color: #5500bb  !important; 
+    border-color: #00a2ff  !important; 
+    border-style: solid  !important; 
+    border-width: 1px  !important; 
+    color: #fff  !important; 
+}
+
+div.content-box a span {
+    text-transform: none  !important; 
+}
+
+div.exchange-bordered {
+    margin: 0  !important; 
+}
+
+div.exchange-content-header.ask {
+    background-color: #9e0000  !important; 
+    color: #fff  !important; 
+    letter-spacing: 1px  !important; 
+    line-height: 1  !important; 
+}
+
+.lightTheme .exchange-content-header.ask {
+    background-color: #9e0000  !important; 
+    color: #fff  !important; 
+    letter-spacing: 1px  !important; 
+    line-height: 1  !important; 
+}
+
+div.exchange-content-header.ask span {
+    font-variant: small-caps  !important; 
+    font-weight: bold  !important; 
+    text-transform: lowercase  !important; 
+}
+
+.lightTheme .exchange-content-header.bid {
+    background-color: #0ea300  !important; 
+    color: #fff  !important; 
+    letter-spacing: 1px  !important; 
+    line-height: 1  !important; 
+}
+
+div.exchange-content-header.bid {
+    background-color: #0ea300  !important; 
+    color: #fff  !important; 
+    letter-spacing: 1px  !important; 
+    line-height: 1  !important; 
+}
+
+div.exchange-content-header.bid span {
+    font-variant: small-caps  !important; 
+    font-weight: bold  !important; 
+    text-transform: lowercase  !important; 
+}
+
+div.exchange-content-header.clickable {
+    background-color: #5500bb  !important; 
+    color: #fff  !important; 
+}
+
+div.filter.inline-block input {
+    background-color: $black  !important; 
+    color: #fff  !important; 
+    font-family: Play  !important; 
+}
+
+div.float-right.header-sub-title {
+    color: #fff  !important; 
+    font-weight: bold  !important; 
+    letter-spacing: 0  !important; 
+    margin-top: 2px  !important; 
+}
+
+div.float-right.header-sub-title span {
+    font-weight: bold  !important; 
+}
+
+div.float-right.header-sub-title.grouped_order select {
+    color: #fff  !important; 
+    font-variant: small-caps  !important; 
+    font-weight: bold  !important; 
+    text-transform: lowercase  !important; 
+}
+
+div.grid-block.main-content.wrap.regular-padding {
+    font-family: Play  !important; 
+}
+
+div.grid-block.no-overflow.wrap.shrink {
+    font-family: Play  !important; 
+    margin-top: 0 !important; 
+    margin-bottom: 0 !important; 
+}
+
+div.grid-block.shrink div {
+    font-family: Play  !important; 
+}
+
+div.grid-block.small-12.no-margin.vertical h3 {
+    font-family: Play  !important; 
+    font-weight: bold  !important; 
+    text-transform: uppercase  !important; 
+}
+
+div.grid-block.small-3.no-margin.no-overflow.buy-sell-label span {
+    font-variant: small-caps  !important; 
+    font-weight: bold  !important; 
+    text-transform: lowercase  !important; 
+}
+
+div.grid-block.small-4.no-margin.no-overflow.buy-sell-box {
+    background-color: #5500bb  !important; 
+    color: #fff  !important; 
+    letter-spacing: 1px  !important; 
+}
+
+div.grid-block.small-4.no-margin.no-overflow.buy-sell-box span span {
+    font-variant: small-caps  !important; 
+    text-transform: uppercase  !important; 
+}
+
+div.grid-block.small-4.no-margin.no-overflow.buy-sell-label span {
+    font-variant: small-caps  !important; 
+    font-weight: bold  !important; 
+    text-transform: lowercase  !important; 
+}
+
+div.grid-block.vertical.shrink h3 {
+    font-family: Play  !important; 
+    font-variant: small-caps  !important; 
+    font-weight: bold  !important; 
+    text-transform: lowercase  !important; 
+}
+
+div.grid-block.wrap.market-stats-container {
+    font-family: Play  !important; 
+    height: 50px  !important; 
+}
+
+div.grid-content h2 {
+    font-family: Play  !important; 
+}
+
+div.grid-content h5 {
+    font-family: Play  !important; 
+}
+
+div.grid-content.app-tables.no-padding {
+    font-family: Play  !important; 
+}
+
+div.grid-content.shrink.settings-menu {
+    font-family: Play  !important; 
+}
+
+div.has-error {
+    font-variant: small-caps  !important; 
+    font-weight: bold  !important; 
+    text-transform: uppercase  !important; 
+}
+
+div.header-area label {
+    font-family: Play  !important; 
+    text-transform: lowercase  !important; 
+    font-variant: small-caps  !important; 
+    font-weight: bold  !important; 
+    line-height: 1em  !important; 
+    letter-spacing: 1px  !important; 
+}
+
+div.header-selector input {
+    background-color: #000  !important; 
+    color: #fff  !important; 
+}
+
+div.inline-block.tooltip span {
+    letter-spacing: 1px  !important; 
+    font-weight: bold  !important; 
+}
+
+div.inline-label.input-wrapper input {
+    background-color: #5500bb  !important; 
+    border-style: solid  !important; 
+    color: #fff  !important; 
+    border-top-width: 1px  !important; 
+    border-bottom-width: 1px  !important; 
+    border-color: #0cf  !important; 
+}
+
+div.introjs-launcher {
+    background-color: #5500bb  !important; 
+    color: #fff  !important; 
+    font-weight: bold  !important; 
+}
+
+div.loading-overlay {
+    font-family: Play  !important; 
+    font-weight: bold  !important; 
+}
+
+div.modal-content {
+    font-family: Play  !important; 
+}
+
+div.modal.fadeIn.ng-enter.is-active.ng-enter-active {
+    border-color: #0cf  !important; 
+    border-style: solid  !important; 
+    border-width: 1px  !important; 
+}
+
+div.modal.is-active {
+    border-width: 2px  !important; 
+}
+
+div.modal__header p {
+    font-family: Play  !important; 
+}
+
+div.modal__title h4 {
+    font-family: Play  !important; 
+}
+
+div.mymarkets-header.clickable {
+    background-color: #5500bb  !important; 
+    border-bottom-width: 1px  !important; 
+    border-color: #fff  !important; 
+    border-left-width: 0  !important; 
+    border-right-width: 0  !important; 
+    border-style: none  !important; 
+    border-top-width: 0  !important; 
+    border-width: 1px  !important; 
+    color: #fff  !important; 
+}
+
+div.mymarkets-header.clickable span {
+    font-variant: small-caps  !important; 
+    font-weight: bold  !important; 
+    letter-spacing: 1px  !important; 
+    text-transform: lowercase  !important; 
+}
+
+div.mymarkets-header.clickable.inactive {
+    background-color: #383838  !important; 
+    border-style: none  !important; 
+    color: #fff  !important; 
+}
+
+div.mymarkets-header.clickable.inactive span {
+    font-variant: small-caps  !important; 
+    font-weight: bold  !important; 
+    text-transform: lowercase  !important; 
+}
+
+div.settings--notifications--no-browser-support {
+    font-variant: small-caps  !important; 
+    font-weight: bold  !important; 
+    text-transform: uppercase  !important; 
+}
+
+div.settings-input {
+    background-color: #5500bb  !important; 
+    color: #fff  !important; 
+}
+
+div.small-12.medium-5 h4 {
+    font-family: Play  !important; 
+}
+
+div.small-12.medium-7 h4 {
+    font-family: Play  !important; 
+}
+
+div.stat-text {
+    font-variant: small-caps  !important; 
+    font-weight: bold  !important; 
+    text-transform: lowercase  !important; 
+}
+
+div.stat-text span {
+    color: #f07d18  !important; 
+    font-variant: small-caps  !important; 
+    font-weight: bold  !important; 
+    letter-spacing: 1px  !important; 
+    text-transform: lowercase  !important; 
+}
+
+div.tab-content.tab-content.padding {
+    font-family: Play  !important; 
+}
+
+div.text-center {
+    font-family: Play  !important; 
+    text-transform: lowercase  !important; 
+    font-variant: small-caps  !important; 
+}
+
+div.text-center.spread {
+    font-variant: small-caps  !important; 
+    letter-spacing: 0  !important; 
+    margin: 0  !important; 
+    padding: 3px  !important; 
+    font-weight: bold  !important; 
+    text-transform: lowercase  !important; 
+    line-height: -1px  !important; 
+}
+
+div.text.account-name {
+    font-family: Play  !important; 
+    padding: 3px  !important; 
+    font-weight: bold  !important; 
+}
+
+div.total-value {
+    font-family: Play  !important; 
+    font-weight: bold  !important; 
+}
+
+div.typeahead__input {
+    background-color: #5500bb  !important; 
+    border-style: solid  !important; 
+    color: #fff  !important; 
+    font-weight: bold  !important; 
+    letter-spacing: 1px  !important; 
+    border-width: 1px  !important; 
+    border-color: #0cf  !important; 
+}
+
+div.v-align.grid-block.align-center.grouped_order select {
+    background-color: #5500cc  !important; 
+    color: #fff  !important; 
+    font-variant: small-caps  !important; 
+    text-transform: uppercase  !important; 
+}
+
+div.v-align.no-padding.align-center.grid-block.footer.shrink.bottom-header {
+    background-color: #5500cc  !important; 
+    color: #fff  !important; 
+}
+
+form label span {
+    font-family: Play  !important; 
+}
+
+form.order-form {
+    letter-spacing: 1px  !important; 
+}
+
+h3.panel-bg-color {
+    font-family: Play  !important; 
+    font-variant: small-caps  !important; 
+    font-weight: bold  !important; 
+    text-transform: lowercase  !important; 
+}
+
+h4.text-center {
+    background-color: #00a2ff  !important; 
+    color: $black  !important; 
+    font-family: Play  !important; 
+}
+
+input.button.buySellButton.ask {
+    font-weight: bold  !important; 
+}
+
+input.button.buySellButton.bid {
+    font-weight: bold  !important; 
+}
+
+input.no-margin.market-filter-input {
+    margin-top: 10px  !important; 
+    margin-bottom: 10px  !important; 
+    border-style: solid  !important; 
+    border-color: #0cf  !important; 
+}
+
+input.settings-input {
+    background-color: #5500bb  !important; 
+    color: #fff  !important; 
+    font-family: Play  !important; 
+}
+
+label span span {
+    letter-spacing: 1px  !important; 
+    text-transform: lowercase  !important; 
+    font-variant: small-caps  !important; 
+}
+
+label.left-label {
+    padding: 5 0 5 5px px px !important; 
+    line-height: 1em !important; 
+    font-family: Play !important; 
+    height: 12px !important; 
+}
+
+label.left-label.login-label span {
+    font-variant: small-caps  !important; 
+    text-transform: uppercase  !important; 
+}
+
+label.right-label span span {
+    background-color: #5500bb  !important; 
+    color: #fff  !important; 
+    padding-left: 1px  !important; 
+    padding-right: 1px  !important; 
+}
+
+li.ant-pagination-total-text {
+    font-family: Play  !important; 
+    text-transform: uppercase  !important; 
+}
+
+li.mymarkets-tab {
+    background-color: #5500bb  !important; 
+    border-color: #5500bb  !important; 
+    border-style: solid  !important; 
+    color: #fff  !important; 
+    font-variant: small-caps  !important; 
+    font-weight: bold  !important; 
+    letter-spacing: 1px  !important; 
+    line-height: 10px  !important; 
+    text-transform: lowercase  !important; 
+    margin-top: 1pxpxpx  !important; 
+    margin-bottom: 1pxpxpx  !important; 
+    margin-right: 2pxpx  !important; 
+    border-width: 1px  !important; 
+    margin: 1px  !important; 
+    margin-left: 1px  !important; 
+}
+
+section.block-list header span {
+    font-family: Play  !important; 
+}
+
+section.block-list.no-border-bottom header span {
+    font-family: Play  !important; 
+}
+
+select.bts-select {
+    background-color: #5500bb  !important; 
+    color: #fff  !important; 
+    font-family: Play  !important; 
+}
+
+select.form-control.buysell-select {
+    background-color: #5500bb  !important; 
+    color: #fff  !important; 
+    letter-spacing: 1px  !important; 
+}
+
+select.login-select {
+    background-color: #5500bb  !important; 
+    color: #fff  !important; 
+}
+
+select.settings-select {
+    background-color: #5500bb  !important; 
+    color: #fff  !important; 
+    font-family: Play  !important; 
+    margin: 0  !important; 
+    padding: 2px  !important; 
+    padding-top: 0  !important; 
+    border-style: none  !important; 
+}
+
+span.asset-prefix-replaced {
+    font-size: 85%  !important; 
+    font-variant: small-caps  !important; 
+    font-weight: bold  !important; 
+    letter-spacing: 1px  !important; 
+    text-transform: lowercase  !important; 
+    color: #ff8c00  !important; 
+}
+
+span.button.outline span {
+    font-family: Play  !important; 
+    font-weight: bold  !important; 
+}
+
+span.column-hide-small {
+    font-family: Play  !important; 
+    letter-spacing: 1px  !important; 
+}
+
+span.flip-arrow {
+    color: #fff  !important; 
+    margin-left: 5px  !important; 
+}
+
+span.header-sub-title {
+    background-color: #5500bb  !important; 
+    color: #fff  !important; 
+    font-weight: bold  !important; 
+    text-transform: uppercase  !important; 
+}
+
+span.header-sub-title span span {
+    font-variant: small-caps  !important; 
+    letter-spacing: 1px  !important; 
+    text-transform: uppercase  !important; 
+}
+
+span.icon.question-circle svg path {
+    color: #fff  !important; 
+}
+
+span.label.cancel {
+    background-color: #adadad  !important; 
+    color: #4d4d4d  !important; 
+    border-color: #adadad  !important; 
+    border-width: 1px  !important; 
+    border-style: solid  !important; 
+    font-size: 70%  !important; 
+    letter-spacing: 1px  !important; 
+    font-weight: bold  !important; 
+}
+
+span.label.info {
+    background-color: #5500bb  !important; 
+    border-color: #5500bb  !important; 
+    border-style: solid  !important; 
+    color: #fff  !important; 
+    text-transform: uppercase  !important; 
+    letter-spacing: 1px  !important; 
+    font-family: Play  !important; 
+    font-size: 70%  !important; 
+    font-weight: bold  !important; 
+}
+
+span.label.success {
+    text-transform: uppercase  !important; 
+    background-color: #0ea300  !important; 
+    color: #fff  !important; 
+    border-style: solid  !important; 
+    border-width: 1px  !important; 
+    border-color: #0ea300  !important; 
+    letter-spacing: 1px  !important; 
+    font-size: 70%  !important; 
+    font-weight: bold  !important; 
+}
+
+span.label.warning {
+    text-transform: uppercase  !important; 
+    background-color: $blaze_orange  !important; 
+    color: #5500bb  !important; 
+    border-style: solid  !important; 
+    border-width: 1px  !important; 
+    border-color: $blaze_orange  !important; 
+    letter-spacing: 1px  !important; 
+    font-size: 70%  !important; 
+    font-weight: bold  !important; 
+}
+
+span.panel-bg-color {
+    font-family: Play  !important; 
+    font-weight: bold  !important; 
+    text-transform: uppercase  !important; 
+}
+
+span.price-decimal {
+    color: #949494  !important; 
+    font-weight: bold  !important; 
+}
+
+span.price-integer {
+    font-family: Play  !important; 
+    font-weight: bold  !important; 
+}
+
+span.stat-text {
+    font-variant: small-caps  !important; 
+    font-weight: bold  !important; 
+    letter-spacing: 1px  !important; 
+    text-transform: lowercase  !important; 
+}
+
+span.tab-title {
+    font-family: Play  !important; 
+    letter-spacing: 1px  !important; 
+}
+
+span.tooltip.inline-block.undefined span {
+    font-weight: bold  !important; 
+}
+
+span.txtlabel span {
+    font-family: Play  !important; 
+    line-height: 1em  !important; 
+}
+
+span.underline span span {
+    font-family: Play  !important; 
+    font-variant: small-caps  !important; 
+    text-transform: uppercase  !important; 
+}
+
+tbody tr td {
+    border-style: dotted  !important; 
+    border-width: 1px  !important; 
+    font-family: Play  !important; 
+    border-color: #0cf  !important; 
+    line-height: 1em  !important; 
+}
+
+tbody.orderbook.clickable tr td {
+    font-size: 85%  !important; 
+    line-height: 0.5em  !important; 
+    border-style: dotted  !important; 
+    border-width: 1px  !important; 
+    border-color: #0cf  !important; 
+}
+
+td span span {
+    font-family: Play  !important; 
+}
+
+td.cell.center-cell {
+    background-color: #5500bb  !important; 
+}
+
+td.clickable.my-account span {
+    font-variant: normal  !important; 
+    font-weight: bold  !important; 
+}
+
+td.text-right {
+    border-style: dotted  !important; 
+    border-color: #0cf  !important; 
+    border-width: 1px  !important; 
+}
+
+td.tooltip {
+    color: #949494  !important; 
+    font-size: 70%  !important; 
+    font-weight: bold  !important; 
+}
+
+th.clickable.is-sortable {
+    letter-spacing: 1px  !important; 
+}
+
+thead tr th {
+    background-color: #5500bb  !important; 
+    color: #fff  !important; 
+    font-family: Play  !important; 
+    letter-spacing: 1px  !important; 
+    border-style: dotted  !important; 
+    border-color: #575757  !important; 
+    border-width: 1px  !important; 
+    font-weight: bold  !important; 
+    text-transform: lowercase  !important; 
+    font-variant: small-caps  !important; 
+    line-height: 0  !important; 
+}
+
+tr td h4 {
+    font-variant: normal  !important; 
+}
+
+tr.clickable td {
+    text-transform: uppercase  !important; 
+    border-style: dotted  !important; 
+    border-color: #0cf  !important; 
+    border-width: 1px  !important; 
+}
+
+ul a li {
+    font-weight: bold  !important; 
+    text-transform: uppercase  !important; 
+}
+
+ul li span {
+    font-variant: small-caps  !important; 
+    font-weight: bold  !important; 
+    letter-spacing: 1px  !important; 
+    text-transform: lowercase  !important; 
+}
+
+ul.mymarkets-tabs {
+    width: 385px  !important; 
+    padding-left: 10px  !important; 
+    margin: -10px  !important; 
+    padding-bottom: 12px  !important; 
+}
+
+li.mymarkets-tab.active {
+    color: $black  !important; 
+    background-color: #0cf  !important; 
+    border-style: solid  !important; 
+    border-color: #0cf  !important; 
+}
+
+td label span {
+    letter-spacing: 1px  !important; 
+    text-transform: lowercase  !important; 
+    font-weight: bold  !important; 
+    font-variant: small-caps  !important; 
+    line-height: 1  !important; 
+}
+
+tr.buy-sell-info td {
+    border-style: none  !important; 
+}
+
+td.column-hide-small {
+    font-family: Play  !important; 
+    font-weight: bold  !important; 
+    letter-spacing: 1px  !important; 
+}
+
+div.settings--notifications--item label {
+    font-family: Play  !important; 
+}
+
+li.is-active a {
+    background-color: #5500bb  !important; 
+    color: #fff  !important; 
+}
+
+span.currency span span {
+    text-transform: uppercase  !important; 
+}
+
+tr.top-header th {
+    line-height: 1px  !important; 
+    border-style: dotted  !important; 
+    border-right-width: 1px  !important; 
+    border-color: #000  !important; 
+    border-bottom-width: 0  !important; 
+    border-top-width: 0  !important; 
+    border-left-width: 0  !important; 
+}
+
+span.symbol-text span span {
+    text-transform: uppercase  !important; 
+}
+
+div.exchange-content-header.ask div {
+    margin: 0  !important; 
+}
+
+#askAmount {
+    border-color: #5500bb  !important; 
+    border-style: solid  !important; 
+    border-width: 2px  !important; 
+}
+
+#askFee {
+    border-color: #5500bb  !important; 
+    border-style: solid  !important; 
+    border-width: 2px  !important; 
+}
+
+#askPrice {
+    border-color: #5500bb  !important; 
+    border-style: solid  !important; 
+    border-width: 2px  !important; 
+}
+
+#askTotal {
+    border-color: #5500bb  !important; 
+    border-style: solid  !important; 
+    border-width: 2px  !important; 
+}
+
+#bidAmount {
+    border-color: #5500bb  !important; 
+    border-style: solid  !important; 
+    border-width: 2px  !important; 
+}
+
+#bidFee {
+    border-color: #5500bb  !important; 
+    border-style: solid  !important; 
+    border-width: 2px  !important; 
+}
+
+#bidPrice {
+    border-color: #5500bb  !important; 
+    border-style: solid  !important; 
+    border-width: 2px  !important; 
+}
+
+#bidTotal {
+    border-color: #5500bb  !important; 
+    border-style: solid  !important; 
+    border-width: 2px  !important; 
+}
+
+div.asset-selector {
+    border-style: none  !important; 
+}
+
+div.left-order-book.no-padding.no-overflow div {
+    border-style: none  !important; 
+}
+
+div.selector.inline-block {
+    text-transform: lowercase  !important; 
+    font-weight: bold  !important; 
+    font-variant: small-caps  !important; 
+}
+
+tr.buy-sell-info td span {
+    text-transform: lowercase  !important; 
+    font-variant: small-caps  !important; 
+}
+
+li.stressed-stat.input.clickable {
+    min-width: 100%  !important; 
+}
+
+.stats.stressed-stat {
+    font-size: 14px  !important; 
+}
+
+pane-legend-line apply-overflow-tooltip main {
+    color: #5500bb  !important; 
+}
+
+.layout__area--top .header-chart-panel-sizer .header-chart-panel-content {
+    padding-top: 0  !important; 
+    padding-bottom: 0  !important; 
+}
+
+.inner-miy9NvGa- {
+    zoom: 60%  !important; 
+}
+
+span.currency.click-for-help span {
+    font-variant: small-caps  !important; 
+}
+
+#current-password, div label input {
+    border-color: #0cf  !important; 
+    border-style: solid  !important; 
+}
+
+#current-password, div.content-box {
+    background-color: #000  !important; 
+    color: #fff  !important; 
+    border-width: 1px  !important; 
+}
+
+div label input {
+    border-width: 1px  !important; 
+}
+
+div.amount-selector label {
+    font-family: Play  !important; 
+}
+
+div.button, div.content-box, div.grid-block.vertical.shrink input, div.grid-content textarea, div.inline-label input, div.modal.is-active, div.small-12.grid-content label textarea {
+    border-color: #0cf  !important; 
+    border-style: solid  !important; 
+}
+
+div.container-row.deposit-directly h6 {
+    font-family: Play  !important; 
+    font-weight: 700  !important; 
+}
+
+div.content-box {
+    padding-left: 10px  !important; 
+}
+
+div.grid-block.vertical.shrink input {
+    border-width: 1px  !important; 
+    margin-bottom: 15px  !important; 
+}
+
+div.grid-content textarea {
+    border-width: 1px  !important; 
+}
+
+div.grid-content.shrink h3 {
+    font-family: Play  !important; 
+    font-weight: 700  !important; 
+    text-transform: uppercase  !important; 
+}
+
+div.inline-label input {
+    background-color: #5500bb  !important; 
+    border-top-width: 1px  !important; 
+    border-bottom-width: 1px  !important; 
+    color: #fff  !important; 
+    font-family: Play  !important; 
+}
+
+div.modal-header b span {
+    text-transform: uppercase  !important; 
+}
+
+div.small-12.grid-content h3 {
+    font-family: Play  !important; 
+    font-variant: small-caps  !important; 
+    font-weight: 700  !important; 
+    text-transform: lowercase  !important; 
+}
+
+div.small-12.grid-content label span {
+    font-weight: 700  !important; 
+}
+
+div.small-12.grid-content label textarea {
+    border-width: 1px  !important; 
+}
+
+div.switch label {
+    border-style: none  !important; 
+}
+
+input.no-margin.market-filter-input, select.login-select, select.settings-select {
+    border-color: #0cf  !important; 
+    border-style: solid  !important; 
+    border-width: 1px  !important; 
+}
+
+div.tabs-header h3 span {
+    font-variant: small-caps  !important; 
+    font-weight: 700  !important; 
+    text-transform: uppercase  !important; 
+}
+
+h2.modal__highlight {
+    font-weight: 700  !important; 
+}
+
+div.loading-panel, tr td input {
+    border-color: #0cf  !important; 
+    border-style: solid  !important; 
+}
+
+div.ant-tabs-tab {
+    font-weight: bold  !important; 
+    font-family: Play  !important; 
+    font-variant: small-caps  !important; 
+    text-transform: lowercase  !important; 
+}
+
+span.small-3.buy-sell-label {
+    font-variant: small-caps  !important; 
+    text-transform: uppercase  !important; 
+    font-weight: bold  !important; 
+}
+
+th.clickable {
+    background-color: #5500bb  !important; 
+    color: #fff  !important; 
+    font-weight: bold  !important; 
+}
+
+
+span.ant-input-group-addon {
+    background-color: #222  !important; 
+    color: #fff  !important; 
+    border-width: 1px  !important; 
+    border-style: solid  !important; 
+    border-color: #5500bb  !important; 
+}
+
+div.ant-card-body {
+    font-weight: bold  !important; 
+    font-family: Play  !important; 
+}
+
+div.help-content {
+    font-family: Play  !important; 
+}
+
+div.ant-tabs-nav-scroll {
+    background-color: #5500bb  !important; 
+    color: #fff  !important; 
+    border-style: none  !important; 
+    line-height: 5px  !important; 
+    letter-spacing: 1px  !important; 
+}
+
+button.ant-btn {
+    background-color: #5500bb  !important; 
+    color: #fff  !important; 
+    border-style: solid  !important; 
+    border-color: #0cf  !important; 
+    margin-left: 4 px !important; 
+    font-family: Play  !important; 
+    letter-spacing: 1px  !important; 
+    font-size: 80  !important; 
+    font-weight: bold  !important; 
+    border-top-width: 1px !important; 
+    border-bottom-width: 1px !important; 
+}
+
+i.anticon.anticon-bell.exchange--price-alert--show-modal svg path {
+    color: $blaze_orange  !important; 
+    font-size: 80%  !important; 
+}
+
+input.ant-input {
+    font-family: Play  !important; 
+    background-color: #5500bb  !important; 
+    border-color: #5500bb  !important; 
+    border-style: solid !important; 
+    color: #fff  !important; 
+    border-width: 2px !important; 
+}
+
+div.ant-modal-title {
+    font-family: Play  !important; 
+    font-weight: bold  !important; 
+    background-color: #5500bb  !important; 
+    color: #fff  !important; 
+    text-transform: uppercase  !important; 
+}
+
+body.lightTheme .ant-btn-primary[disabled] {
+    background-color: #cfcfcf  !important; 
+    font-family: Play  !important; 
+    letter-spacing: 1px  !important; 
+    border-style: solid  !important; 
+    border-color: #5500bb  !important; 
+    border-width: 1px  !important; 
+}
+
+div.form-group.has-error label {
+    font-family: Play  !important; 
+}
+
+div.float-left {
+    font-family: Play  !important; 
+}
+
+div.buy-sell-container {
+    border-width: 0  !important; 
+    border-style: dotted  !important; 
+    border-color: #a3a3a3  !important; 
+    border-right-width: 1px  !important; 
+    border-bottom-width: 1px  !important; 
+}
+
+div.ant-select-selection-selected-value {
+    font-weight: bold  !important; 
+    color: #fff  !important; 
+}
+
+div.small-8.buy-sell-label span {
+    font-weight: bold  !important; 
+}
+
+div span span {
+    font-weight: bold  !important; 
+}
+
+span.small-4.buy-sell-label {
+    letter-spacing: 0  !important; 
+}
+
+
+div.inline-block span {
+    font-weight: bold  !important; 
+    line-height: 1em  !important; 
+}
+
+a.button.market-button {
+    font-weight: bold  !important; 
+    background-color: #ff3300  !important; 
+    letter-spacing: 1px  !important; 
+    line-height: 0  !important; 
+}
+
+div.grid-block.vertical {
+    font-family: Play  !important; 
+    line-height: 1  !important; 
+}
+
+tr td a {
+    font-weight: bold  !important; 
+}
+
+div.grid-content.small-no-padding {
+    border-style: dotted  !important; 
+    border-color: #616161  !important; 
+    border-width: 1px  !important; 
+    border-top-width: 0  !important; 
+    border-bottom-width: 0  !important; 
+    padding-right: 5px  !important; 
+    border-right-width: 0  !important; 
+}
+
+div.loading-panel {
+    background-color: #5500bb  !important; 
+    border-style: none  !important; 
+    color: #fff  !important; 
+}
+
+div.truncated.active-account {
+    font-family: Play  !important; 
+    letter-spacing: 1px  !important; 
+}
+
+div.ant-tabs-ink-bar.ant-tabs-ink-bar-no-animated {
+    color: $blaze_orange  !important; 
+}
+
+button.ant-btn.ant-btn-primary {
+    text-transform: lowercase  !important; 
+    font-variant: small-caps  !important; 
+    font-size: 90%  !important; 
+}
+
+div.grid-block.container-row div {
+    font-weight: bold  !important; 
+}
+
+div.ant-tabs-ink-bar.ant-tabs-ink-bar-animated {
+    border-color: $blaze_orange  !important; 
+}
+
+td.text-right.change-up {
+    font-weight: bold  !important; 
+}
+
+td.text-right.change-down {
+    font-weight: bold  !important; 
+}
+
+tr td input {
+    border-top-width: 1px  !important; 
+    border-bottom-width: 1px  !important; 
+}
+
+div.grid-block.vertical.shrink div label {
+    width: 300px  !important; 
+    height: 10px  !important; 
+}
+
+div.orderbook-showall {
+    border-color: #0cf  !important; 
+    background-color: #5500bb  !important; 
+    font-weight: bold  !important; 
+    text-transform: uppercase  !important; 
+    line-height: 1em  !important; 
+}
+
+div.ant-modal-header {
+    background-color: #5500bb  !important; 
+    color: #fff  !important; 
+}
+
+tr th span {
+    line-height: 1em  !important; 
+}
+
+div.ant-table-column-sorters {
+    line-height: 1em  !important; 
+}
+
+div.asset-card.no-padding p {
+    padding-left: 5px  !important; 
+}
+
+div.asset-card.no-padding {
+    padding-left: 5px  !important; 
+    padding-right: 3px  !important; 
+}
+
+label.left-label span {
+    line-height: 1em  !important; 
+    font-weight: bold  !important; 
+}
+
+div.cell.header-cell.left {
+    background-color: #5500bb  !important; 
+    color: #fff  !important; 
+}
+
+div.small-3.buy-sell-label span {
+    letter-spacing: 0  !important; 
+    font-size: 75%  !important; 
+    text-transform: lowercase  !important; 
+    font-variant: small-caps  !important; 
+    font-weight: bold  !important; 
+}
+
+div.introjs-tooltiptext {
+    font-family: Play  !important; 
+}
+
+a.introjs-button.introjs-skipbutton {
+    font-weight: bold  !important; 
+    font-variant: small-caps  !important; 
+    text-transform: lowercase  !important; 
+}
+
+a.introjs-button.introjs-nextbutton.introjs-fullbutton {
+    text-transform: lowercase  !important; 
+    font-variant: small-caps  !important; 
+    font-weight: bold  !important; 
+    font-family: Play  !important; 
+}
+
+div.active-node h4 {
+    font-family: Play  !important; 
+    font-weight: bold  !important; 
+    text-transform: uppercase  !important; 
+}
+
+#baseMarketFee {
+    border-color: #5500cc  !important; 
+    border-right-width: 0  !important; 
+    border-style: solid  !important; 
+    border-width: 2px  !important; 
+}
+
+#crex {
+    font-family: Play  !important; 
+}
+
+#current-password {
+    background-color: #5500bb  !important; 
+    color: #fff  !important; 
+    margin-bottom: 10px  !important; 
+}
+
+#menu {
+    font-family: Play  !important; 
+}
+
+a.column-hide-xxs {
+    font-family: Play  !important; 
+}
+
+a.logo {
+    background-color: #5500bb  !important; 
+}
+
+a.logo.active {
+    background-color: #5500bb  !important; 
+    color: #5500bb  !important; 
+}
+
+label div span {
+    text-transform: uppercase !important; 
+    letter-spacing: 0 !important; 
+    font-size: 65% !important; 
+    line-height: 1em !important; 
+}
+
+div.confirm-checks label div {
+    width: 409px !important; 
+    margin-left: 20px !important; 
+    line-height: 1 !important; 
+}
+
+span.inline-label textarea {
+    text-transform: uppercase !important; 
+    font-size: 79% !important; 
+    line-height: 1em !important; 
+    background-color: #50b !important; 
+    color: #fff !important; 
+}
+
+#password {
+    background-color: #50b !important; 
+    color: #fff !important; 
+}
+
+#username {
+    background-color: #50b !important; 
+    color: #fff !important; 
+}
+
+svg.svg-icon {
+    color: #ffffff !important; 
+}
+
+div div form {
+    padding: 5px !important; 
+}
+    </style>
+        <script>
+            var ref = encodeURIComponent(document.referrer);
+            if (window.process && window.process.versions && window.process.versions['electron']) {
+                window.electron = window.process.versions['electron'];
+                window.remote = require('electron').remote;
+                window._$guid$_ = window.remote.getGlobal('guid');
+                window.app_version = window.remote.getGlobal('version');
+                ref = 'lw-' + window.process.platform + '-' + window.app_version + '-' + window.remote.getGlobal('guid');
+                window.onload = function(e){
+                    var content = document.getElementById("content");
+                    if (content) content.className = "electron " + window.process.platform;
+                }
+            }
+        </script>
+<script>
+function loadPage() { 
+    location.get = "/?r=i-go#/";
+    var articleId = window.location.get.replace("/?r=i-go#/","");
+}  
+</script>
+<link href="vendor.22d4014009b1b632dfad.css" rel="stylesheet"><link href="app.1a4136202ff419468a73.css" rel="stylesheet"></head>
+<body onload="loadPage()">
+    <main id="content">
+        <h1 class="centerDiv" style="">
+            <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script><style>body{background-color: #222!important;}.pinkBg{background-color: #ed184f!important; background-image: linear-gradient(90deg, #fd5581, #fd8b55);}.text-load{font-family: 'Play'; color: #50b!important; font-size:15px}.intro-banner-vdo-play-btn{height:50px; width:50px; position:absolute; top:50%; left:50%; text-align:center; margin:-30px 0 0 -30px; border-radius:100px; z-index:1}.intro-banner-vdo-play-btn i{line-height:50px; font-size:25px}.intro-banner-vdo-play-btn .ripple{position:absolute; width:160px; height:160px; z-index:-1; left:50%; top:50%; opacity:0; margin:-80px 0 0 -80px; border-radius:100px; -webkit-animation:ripple 1.8s infinite; animation:ripple 1.8s infinite}@-webkit-keyframes ripple{0%{opacity:1; -webkit-transform:scale(0); transform:scale(0)}100%{opacity:0; -webkit-transform:scale(1); transform:scale(1)}}@keyframes ripple{0%{opacity:1; -webkit-transform:scale(0); transform:scale(0)}100%{opacity:0; -webkit-transform:scale(1); transform:scale(1)}}.intro-banner-vdo-play-btn .ripple:nth-child(2){animation-delay:.3s; -webkit-animation-delay:.3s}.intro-banner-vdo-play-btn .ripple:nth-child(3){animation-delay:.6s; -webkit-animation-delay:.6s}</style><p class="intro-banner-vdo-play-btn pinkBg"> <i class="glyphicon glyphicon-hourglass blackText" aria-hidden="true"></i> <span class="ripple pinkBg"></span> <span class="ripple pinkBg"></span> <span class="ripple pinkBg"></span> </p>-->
+            <div class="text">  CONNECTING</div><div class="box"> <div class="comp"></div><div class="loader"></div><div class="con"></div><div class="byte"></div><div class="server"></div></div><style>@import url(https://fonts.googleapis.com/css?family=Play:100,400);.box{width: 240px; height: 150px; position: absolute; top: calc(50% - 25px); top: -webkit-calc(50% - 25px); left: calc(50% - 120px); left: -webkit-calc(50% - 120px);}.text{font-family: 'Play', sans-serif; color: #fff; font-weight: 300; font-size: 45px; position: absolute; top: calc(50% - 105px); top: -webkit-calc(50% - 105px); left: calc(50% - 160px); left: -webkit-calc(50% - 160px); oapcity: 1; -webkit-animation: fade-in-out 2.5s infinite; -moz-animation: fade-in-out 2.5s infinite; -o-animation: fade-in-out 2.5s infinite; animation: fade-in-out 2.5s infinite;}.comp{position: absolute; top: 0px; width: 80px; height: 55px; border: 3px solid #fff; border-radius: 5px;}.comp:after{content: ''; position: absolute; z-index: 5; top: 19px; left: 5px; width: 65px; height: 10px; border-radius: 360px; border: 3px solid #fff;}.loader{position: absolute; z-index: 5; top: 26px; left: 12px; width: 8px; height: 8px; border-radius: 360px; background: #fff; -webkit-animation: loader 5s infinite linear 0.5s; -moz-animation: loader 5s infinite linear 0.5s; -o-animation: loader 5s infinite linear 0.5s; animation: loader 5s infinite linear 0.5s;}.con{position: absolute; top: 28px; left: 85px; width: 100px; height: 3px; background: #fff;}.byte{position: absolute; top: 25px; left: 80px; height: 9px; width: 9px; background: #fff; border-radius: 360px; z-index: 6; opacity: 0; -webkit-animation: byte_animate 5s infinite linear 0.5s; -moz-animation: byte_animate 5s infinite linear 0.5s; -o-animation: byte_animate 5s infinite linear 0.5s; animation: byte_animate 5s infinite linear 0.5s;}.server{position: absolute; top: 22px; left: 185px; width: 35px; height: 35px; z-index: 1; border: 3px solid #fff; background: #459BF9; border-radius: 360px; -webkit-transform: rotateX(58deg); -moz-transform: rotateX(58deg); -o-transform: rotateX(58deg); transform: rotateX(58deg);}.server:before{content: ''; position: absolute; top: -47px; left: -3px; width: 35px; height: 35px; z-index: 20; border: 3px solid #fff; background: #459BF9; border-radius: 360px;}.server:after{position: absolute; top: -26px; left: -3px; border-left: 3px solid #fff; border-right: 3px solid #fff; width: 35px; height: 40px; z-index: 17; background: #459BF9; content: '';}/*Byte Animation*/@-webkit-keyframes byte_animate{0%{opacity: 0; left: 80px;}4%{opacity: 1;}46%{opacity: 1;}50%{opacity: 0; left: 185px;}54%{opacity: 1;}96%{opacity: 1;}100%{opacity: 0; left: 80px;}}@-moz-keyframes byte_animate{0%{opacity: 0; left: 80px;}4%{opacity: 1;}46%{opacity: 1;}50%{opacity: 0; left: 185px;}54%{opacity: 1;}96%{opacity: 1;}100%{opacity: 0; left: 80px;}}@-o-keyframes byte_animate{0%{opacity: 0; left: 80px;}4%{opacity: 1;}46%{opacity: 1;}50%{opacity: 0; left: 185px;}54%{opacity: 1;}96%{opacity: 1;}100%{opacity: 0; left: 80px;}}@keyframes byte_animate{0%{opacity: 0; left: 80px;}4%{opacity: 1;}46%{opacity: 1;}50%{opacity: 0; left: 185px;}54%{opacity: 1;}96%{opacity: 1;}100%{opacity: 0; left: 80px;}}/*LOADER*/@-webkit-keyframes loader{0%{width: 8px;}100%{width: 63px;}}@-moz-keyframes loader{0%{width: 8px;}100%{width: 63px;}}@-o-keyframes loader{0%{width: 8px;}100%{width: 63px;}}@keyframes loader{0%{width: 8px;}100%{width: 63px;}}/*FADE IN-OUT*/@-webkit-keyframes fade-in-out{0%{opacity: 1;}50%{opacity: 0;}100%{oapcity: 1;}}@-moz-keyframes fade-in-out{0%{opacity: 1;}50%{opacity: 0;}100%{oapcity: 1;}}@-o-keyframes fade-in-out{0%{opacity: 1;}50%{opacity: 0;}100%{oapcity: 1;}}@keyframes fade-in-out{0%{opacity: 1;}50%{opacity: 0;}100%{oapcity: 1;}}</style>
+
+        </h1>
+    </main>
+
+    
+<script type="text/javascript" src="vendor.fc8a71b630f59192afd8.js"></script><script type="text/javascript" src="app.b3c5cbe67f80536dbd37.js"></script></body>
+</html>
